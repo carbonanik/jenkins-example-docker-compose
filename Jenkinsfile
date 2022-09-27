@@ -6,7 +6,7 @@ pipeline {
                 sh '''
                 docker version
                 docker info 
-                docker compose virsion
+                docker compose version
                 curl --virsion
                 jq --virsion
                 '''
