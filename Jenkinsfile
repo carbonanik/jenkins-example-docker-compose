@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     stages {
-        stage("verify tooling") {
+        stage('verify tooling') {
             steps {
                 sh '''
                 docker version
@@ -11,6 +11,24 @@ pipeline {
                 jq --version
                 '''
             }
+        }
+        stage('Prune docker data') {
+            steps {
+                sh 'docker system prune -a --valume -f'
+            }
+        }
+        stage('start container') {
+            sh 'docker compose up -d --no-color --wait'
+            sh 'dcoker compose ps'
+        }
+        stage('Run test againets the container') {
+            sh 'curl http://localhost:3000/param?query=demo | jq'
+        }
+    }
+    post {
+        always {
+            sh 'docker compose down --remove-orphans -v'
+            sh 'docker compose ps'
         }
     }
 }
