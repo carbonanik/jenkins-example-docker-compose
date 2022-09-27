@@ -8,7 +8,6 @@ pipeline {
                 docker info 
                 docker compose version
                 curl --version
-                jq --version
                 '''
             }
         }
@@ -25,7 +24,7 @@ pipeline {
         }
         stage('Run test againets the container') {
             steps {
-                sh 'curl http://localhost:3000/param?query=demo | jq'
+                sh 'curl http://localhost:3000/param?query=demo'
             }
         }
     }
