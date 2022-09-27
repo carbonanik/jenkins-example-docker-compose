@@ -18,11 +18,15 @@ pipeline {
             }
         }
         stage('start container') {
-            sh 'docker compose up -d --no-color --wait'
-            sh 'dcoker compose ps'
+            steps {
+                sh 'docker compose up -d --no-color --wait'
+                sh 'dcoker compose ps'
+            }
         }
         stage('Run test againets the container') {
-            sh 'curl http://localhost:3000/param?query=demo | jq'
+            steps {
+                sh 'curl http://localhost:3000/param?query=demo | jq'
+            }
         }
     }
     post {
