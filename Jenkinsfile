@@ -20,7 +20,7 @@ pipeline {
         stage('start container') {
             steps {
                 sh 'docker compose up -d --no-color --wait'
-                sh 'dcoker compose ps'
+                sh 'docker compose ps'
             }
         }
         stage('Run test againets the container') {
