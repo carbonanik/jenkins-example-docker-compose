@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'digital_ocean' }
+    agent any
     stages {
         stage('verify tooling') {
             steps {
