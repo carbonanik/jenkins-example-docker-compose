@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'host' }
+    agent any
     stages {
         stage('verify tooling') {
             steps {
